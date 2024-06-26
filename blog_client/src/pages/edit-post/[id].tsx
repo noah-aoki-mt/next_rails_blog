@@ -30,6 +30,10 @@ const EditPost = ({ post }: Props) => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
+            if (title.trim() === '' || content.trim() === '') {
+                alert("タイトルと本文のどちらも入力してください");
+                return;
+            }
             await axios.put(`http://localhost:3001/api/v1/posts/${post.id}`, {
                 title: title,
                 content: content,

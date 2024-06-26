@@ -24,6 +24,10 @@ export default function Home({ posts }: Props) {
   const router = useRouter();
 
   const handleDelete = async (id: any) => {
+    const confirmed = window.confirm('本当に削除しますか？');
+    if (!confirmed) {
+      return; // キャンセルされた場合は何もしない
+    }
     try {
       await axios.delete(`http://localhost:3001/api/v1/posts/${id}`)
 

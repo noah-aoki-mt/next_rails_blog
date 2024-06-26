@@ -12,13 +12,18 @@ const CreatePost = () => {
         e.preventDefault();
 
         try {
+            if (title.trim() === '' || content.trim() === '') {
+                alert("タイトルと本文のどちらも入力してください");
+                return;
+            }
             await axios.post("http://localhost:3001/api/v1/posts", {
                 title: title,
                 content: content,
             }
             )
-
+        
             router.push("/");
+
         } catch (err) {
             alert("投稿に失敗しました")
         }
